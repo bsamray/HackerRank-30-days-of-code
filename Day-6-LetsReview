@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int ct = sc.nextInt(); 
+        String oddL = "";
+        String evenL = "";
+        //System.out.println(ct);
+        sc.nextLine();
+        for(int ln=0; ln<ct; ln++){
+            String lnstrg = sc.nextLine();
+            for (int index=0; index<lnstrg.length(); index++){
+                String cur_char = lnstrg.substring(index, index+1);
+                if (index%2 == 0){
+                    evenL = evenL + cur_char;    
+                } else {
+                    oddL = oddL + cur_char;
+                }
+            }
+            System.out.println(evenL + " " + oddL);
+            oddL = "";
+            evenL = "";
+        }
+        sc.close();
+    }
+}
