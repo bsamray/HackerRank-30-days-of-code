@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    private static String bin_rep_rev = "";
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        binary_to(num);       
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+    }
+    
+    private static void binary_to(Integer num){
+        bin_rep_rev = bin_rep_rev + num%2;
+        if(num >= 2){
+            binary_to(num/2);
+        } else {
+            countmaxoccurs(rev(bin_rep_rev), "1");
+        }       
+    }
+    
+    private static String rev(String txt){
+        return new StringBuffer(txt).reverse().toString(); 
+    }
+    
+    private static String recursePattern(String pattern, int count){
+        String orig_pattern = pattern;
+        //System.out.println(pattern + count);
+        while (count > 1){
+            pattern += orig_pattern;
+            count--;
+        }
+         //System.out.println(pattern);
+        return pattern;
+    }
+    
+    private static void countmaxoccurs(String txt, String pattern){
+        int i = 1;
+        boolean continueS = true;
+        //System.out.println(txt);
+        while(continueS){
+            //System.out.println(recursePattern(pattern, i));
+            if (txt.indexOf(recursePattern(pattern, i)) < 0){
+                continueS = false;
+                System.out.println(i-1);
+            } else {
+                i++;
+            }
+        }
+    }
+}
