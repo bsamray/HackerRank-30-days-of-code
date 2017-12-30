@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+	
+    public static void main(String[] args) {
+        int i = 4;
+        double d = 4.0;
+        String s = "HackerRank ";
+		
+        Scanner scan = new Scanner(System.in);
+        int p = scan.nextInt();
+        scan.nextLine();
+        double db = scan.nextDouble();
+        scan.nextLine();
+        String st = scan.nextLine();
+        System.out.println(i+p) ; 
+        System.out.println(String.format("%.1f", d+db)) ; 
+        System.out.println(s+st) ; 
+        scan.close();
+    }
+}
