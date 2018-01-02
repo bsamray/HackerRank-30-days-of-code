@@ -1,0 +1,45 @@
+import java.util.*;
+import java.io.*;
+
+class Calculator{
+    
+    public int power(int num, int pow) throws Exception{
+        int ans = 1;
+        if(num >= 0 && pow >= 0){
+           if(num == 0){
+               ans = 0; 
+           } else {
+               while(pow > 0){
+                  ans = ans*num;
+                  pow--;
+                } 
+           }
+        } else {
+            throw new Exception("n and p should be non-negative");           
+        }   
+        return ans; 
+    }
+}
+
+class Solution{
+
+    public static void main(String[] args) {
+    
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while (t-- > 0) {
+        
+            int n = in.nextInt();
+            int p = in.nextInt();
+            Calculator myCalculator = new Calculator();
+            try {
+                int ans = myCalculator.power(n, p);
+                System.out.println(ans);
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        in.close();
+    }
+}
