@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] a = new int[n];
+        for(int a_i=0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
+        
+        sortAsc(a);
+    }
+    
+    public static void sortAsc(int[] a){
+        int arrlength = a.length;
+        int numSwaps = 0;
+        for(int i = 0; i < arrlength; i++){            
+            for(int j = 0; j < arrlength-1; j++){
+                if(a[j]>a[j+1]){
+                    a = swap(a,j);
+                    numSwaps++;
+                }
+            }
+        }
+        System.out.println("Array is sorted in " + numSwaps + 
+              " swaps.\nFirst Element: " + a[0] + "\nLast Element: " + a[arrlength-1]);
+    }
+    
+    public static int[] swap(int[] a, int j){
+        int temp = a[j];
+        a[j] = a[j+1];
+        a[j+1] = temp;
+        return a;
+    }
+}
