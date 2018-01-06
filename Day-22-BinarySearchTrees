@@ -1,0 +1,75 @@
+import java.util.*;
+import java.io.*;
+
+//Base class
+class Node{
+    Node left,right;
+    int data;
+    Node(int data){
+        this.data=data;
+        left=right=null;
+    }
+}
+
+//Solution class
+class Solution{
+
+    private static int cur_height_max = 0;  //current max height during the program
+    
+    //initial method that calls the recursive method
+    public static int getHeight(Node root){
+        int init_height = 0;
+        if(root != null){
+            iterNode(root, init_height);
+        }            
+        return cur_height_max;
+    }
+    
+    //recursive method that traverses the tree and assesses height
+    public static void iterNode(Node cur, int cur_height){
+        if(cur.left != null || cur.right != null){
+            cur_height++;
+            if(cur_height > cur_height_max){
+                cur_height_max = cur_height;
+            }
+            if(cur.left != null){
+                iterNode(cur.left, cur_height);
+            }
+            if(cur.right != null){
+                iterNode(cur.right, cur_height);
+            }
+        }
+    }
+    
+    //method that creates the tree
+    public static Node insert(Node root,int data){
+        if(root==null){
+            return new Node(data);
+        }
+        else{
+            Node cur;
+            if(data<=root.data){
+                cur=insert(root.left,data);
+                root.left=cur;
+            }
+            else{
+                cur=insert(root.right,data);
+                root.right=cur;
+            }
+            return root;
+        }
+    }
+   
+   //main method
+	 public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        Node root=null;
+        while(T-->0){
+            int data=sc.nextInt();
+            root=insert(root,data);
+        }
+        int height=getHeight(root);
+        System.out.println(height);
+    }
+}
