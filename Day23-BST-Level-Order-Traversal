@@ -1,0 +1,68 @@
+import java.util.*;
+import java.io.*;
+class Node{
+    Node left,right;
+    int data;
+    Node(int data){
+        this.data=data;
+        left=right=null;
+    }
+}
+class Solution{
+
+static Queue<Node> q = new LinkedList<Node>();//queue that manages the FIFO sequence of nodes
+
+/*
+* method that performs the level-order traversal
+*/
+static void levelOrder(Node nd){
+    if(nd != null){
+        q.add(nd);
+        while(!q.isEmpty()){
+            Node this_nd = q.poll();
+            System.out.print(this_nd.data + " ");
+            if (this_nd.left != null){
+                q.add(this_nd.left);
+            }
+            if (this_nd.right != null){
+                q.add(this_nd.right);
+            }
+        }
+    }     
+}
+
+/*
+* method that builds the tree
+*/
+public static Node insert(Node root,int data){
+        if(root==null){
+            return new Node(data);
+        }
+        else{
+            Node cur;
+            if(data<=root.data){
+                cur=insert(root.left,data);
+                root.left=cur;
+            }
+            else{
+                cur=insert(root.right,data);
+                root.right=cur;
+            }
+            return root;
+        }
+    }
+
+/*
+* method that accepts input
+*/
+public static void main(String args[]){
+            Scanner sc=new Scanner(System.in);
+            int T=sc.nextInt();
+            Node root=null;
+            while(T-->0){
+                int data=sc.nextInt();
+                root=insert(root,data);
+            }
+            levelOrder(root);
+        }	
+}
