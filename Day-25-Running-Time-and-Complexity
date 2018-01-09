@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num_count = sc.nextInt();
+        while (num_count-- > 0){
+            int this_num = sc.nextInt();
+            checkPrime(this_num);
+        }
+    }
+    
+    public static void checkPrime(int num){
+        if(num == 2){
+            System.out.println("Prime");
+        } else if(num%2 == 0 || num == 1){
+            System.out.println("Not prime");
+        }  
+          else {
+              boolean notfound = true;
+              for(int i=3; i*i <= num && notfound; i+=2){
+                  if(num%i == 0){
+                      System.out.println("Not prime"); 
+                      notfound = false;
+                  }
+              }
+              if(notfound){
+                  System.out.println("Prime");
+              }
+        }
+    }
+}
