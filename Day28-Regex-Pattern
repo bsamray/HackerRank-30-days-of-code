@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<String> names = new ArrayList<String>();
+        int pers_count = sc.nextInt();
+        while(pers_count-- > 0){
+            String name = sc.next();
+            String email = sc.next();
+            if(email.matches("(^.+)@gmail.com")){
+                names.add(name);
+            }           
+        }
+        if(names.size() > 0){
+            sort(names);
+        }
+    }
+    
+    /*
+    /Bubblesort names arraylist
+    */
+    public static void sort(List<String> names){
+        int arrsize = names.size();
+        if(arrsize > 0){
+            for(int i=0; i<arrsize; i++){
+                for(int j=0; j<arrsize-i-1; j++){
+                    if(names.get(j).compareTo(names.get(j+1)) > 0){
+                        String tmp = names.get(j+1);
+                        names.set(j+1, names.get(j));
+                        names.set(j, tmp);
+                    }
+                }
+            }
+            for(int i=0; i<arrsize; i++){
+                System.out.println(names.get(i));
+            }
+        }
+    }   
+}
