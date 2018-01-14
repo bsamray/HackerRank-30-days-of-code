@@ -11,7 +11,7 @@ public class Solution {
             int upper_cap = sc.nextInt(); 
             int and_max = 0;
             for(int i=0; i<samp_space-1; i++){
-                for(int j=i+1; j<samp_space && j>i; j++){
+                for(int j=i+1; j<=samp_space; j++){
                     int and_this = i & j;                  
                     if(and_this > and_max && and_this < upper_cap){
                         and_max = and_this;
